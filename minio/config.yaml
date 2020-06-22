@@ -1,0 +1,21 @@
+accessKey: "<insertAccessKey>"
+secretKey: "<insertSecretKey>"
+
+persistence:
+  enabled: true
+  storageClass: "hostpath"
+  accessMode: ReadWriteOnce
+  size: 500Gi
+
+ingress:
+  enabled: true
+  labels: {}
+
+  annotations:
+    "nginx.ingress.kubernetes.io/proxy-body-size": "0"
+    "nginx.ingress.kubernetes.io/proxy-read-timeout": "600"
+    "nginx.ingress.kubernetes.io/proxy-send-timeout": "600"
+  path: /minio
+  hosts:
+    - "someShost.local"
+  tls: []
