@@ -11,9 +11,9 @@ pkgs.mkShell {
   name = "k8s-takeway-shell";
 
   buildInputs = with pkgs; [
-    busybox
-    # Fails for the time being
+    gnugrep
     kubernetes-helm
+    #unstable.kubernetes-helm
   ];
 
   shellHook = ''

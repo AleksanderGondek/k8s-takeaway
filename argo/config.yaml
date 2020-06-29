@@ -1,0 +1,37 @@
+# -- custom values
+# Using custom to make ingress host/argo/ work
+# and to create config for minio
+INGRESS_HOST_VAR: "someShost.local"
+MINIO_ACCESSKEY: "<insertAccessKey>"
+MINIO_SECRETKEY: "<insertSecretKey>"
+# -- end of custom values
+
+installCRD: false
+createAggregateRoles: true
+singleNamespace: true
+
+server:
+  enabled: true
+  baseHref: /argo/
+  ingress:
+    enabled: false
+  clusterWorkflowTemplates:
+    enableEditing: true
+
+useStaticCredentials: true
+useDefaultArtifactRepo: true
+artifactRepository:
+  archiveLogs: true
+  s3:
+    accessKeySecret:
+      name: dev-minio
+      key: accesskey
+    secretKeySecret:
+      name: dev-minio
+      key: secretkey
+    insecure: true
+    bucket: "argo-artifacts"
+    endpoint: "dev-minio:9000"
+
+minio:
+  install: false
