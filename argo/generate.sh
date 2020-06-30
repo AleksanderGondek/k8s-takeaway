@@ -12,7 +12,7 @@ MINIO_ACCESSKEY=$(cat config.yaml | grep -oP '(?<=MINIO_ACCESSKEY: ")(.*)(?=")' 
 MINIO_SECRETKEY=$(cat config.yaml | grep -oP '(?<=MINIO_SECRETKEY: ")(.*)(?=")' | base64)
 
 cat './_crd.yaml.tmpl' > ./deployment.yaml
-cat './_default_rb.yaml' >> ./deployment.yaml
+cat './_default_rb.yaml.tmpl' >> ./deployment.yaml
 cat './_dev-minio.secret.yaml.tmpl' \
   | sed --expression="s/{{MINIO_ACCESSKEY}}/${MINIO_ACCESSKEY}/g" \
   | sed --expression="s/{{MINIO_SECRETKEY}}/${MINIO_SECRETKEY}/g" \

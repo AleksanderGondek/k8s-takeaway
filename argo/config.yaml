@@ -1,6 +1,7 @@
 # -- custom values
 # Using custom to make ingress host/argo/ work
 # and to create config for minio
+# DO NOT FOGET TO CREATE BUCKET
 INGRESS_HOST_VAR: "someShost.local"
 MINIO_ACCESSKEY: "<insertAccessKey>"
 MINIO_SECRETKEY: "<insertSecretKey>"
@@ -31,7 +32,7 @@ artifactRepository:
       key: secretkey
     insecure: true
     bucket: "argo-artifacts"
-    endpoint: "dev-minio:9000"
+    endpoint: "dev-minio.minio.svc.cluster.local:9000"
 
 minio:
   install: false
