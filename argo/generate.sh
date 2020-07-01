@@ -11,6 +11,8 @@ INGRESS_HOST_VAR=$(cat config.yaml | grep -oP '(?<=INGRESS_HOST_VAR: ")(.*)(?=")
 MINIO_ACCESSKEY=$(cat config.yaml | grep -oP '(?<=MINIO_ACCESSKEY: ")(.*)(?=")' | base64)
 MINIO_SECRETKEY=$(cat config.yaml | grep -oP '(?<=MINIO_SECRETKEY: ")(.*)(?=")' | base64)
 
+# TODO: Little point in having crds separated.
+# (but for now, hooks do not get saved into template..)
 cat './_crd.yaml.tmpl' > ./deployment.yaml
 cat './_default_rb.yaml.tmpl' >> ./deployment.yaml
 cat './_dev-minio.secret.yaml.tmpl' \
