@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Gateway
+metadata:
+  name: argo-bitbucket-cicd-gateway
+  namespace: argo-events
+spec:
+  replica: 1
+  type: webhook
+  eventSourceRef:
+    name: argo-bitbucket-cicd-event-source
+  template:
+    serviceAccountName: argo-events-sa
+  service:
+    ports:
+      - port: 12000
+        targetPort: 12000
+  subscribers:
+    http:
+      - "http://argo-bitbucket-cicd-sensor.argo-events.svc:9300/"
